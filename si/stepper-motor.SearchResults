@@ -1,37 +1,4 @@
----- disableInterrupts Matches (6 in 3 files) ----
-ra_uart1_recv_bytes in drv_uart1.c (src\driver) : 
-		/* disable interrupt */
-		disableInterrupts();
-		
-		/* there's no data: */
-        if ((rx_fifo.get_index == rx_fifo.put_index) && (rx_fifo.is_full == RA_FALSE))
-INTERRUPT_HANDLER in drv_uart1.c (src\driver) : 
-		/* disable interrupt */
-		disableInterrupts();
-		
-		rx_fifo.buffer[rx_fifo.put_index++] = ch;
-		
-infrared_scan in infrared.c (src) : 
-		infrared_recv_len = 0x00;
-		disableInterrupts();
-		infrared_status &= 0xb0;
-		enableInterrupts();
-
-stm8s.h (lib\STM8S_StdPeriph_Driver\inc) line 2601 : 
- #define enableInterrupts()    _rim_()  /* enable interrupts */
- #define disableInterrupts()   _sim_()  /* disable interrupts */
- #define rim()                 _rim_()  /* enable interrupts */
- #define sim()                 _sim_()  /* disable interrupts */
- #define nop()                 _nop_()  /* No Operation */
-stm8s.h (lib\STM8S_StdPeriph_Driver\inc) line 2610 : 
- #define enableInterrupts()    {_asm("rim\n");}  /* enable interrupts */
- #define disableInterrupts()   {_asm("sim\n");}  /* disable interrupts */
- #define rim()                 {_asm("rim\n");}  /* enable interrupts */
- #define sim()                 {_asm("sim\n");}  /* disable interrupts */
- #define nop()                 {_asm("nop\n");}  /* No Operation */
-stm8s.h (lib\STM8S_StdPeriph_Driver\inc) line 2620 : 
- #define enableInterrupts()    __enable_interrupt()   /* enable interrupts */
- #define disableInterrupts()   __disable_interrupt()  /* disable interrupts */
- #define rim()                 __enable_interrupt()   /* enable interrupts */
- #define sim()                 __disable_interrupt()  /* disable interrupts */
- #define nop()                 __no_operation()       /* No Operation */
+---- ra_motor_period_update Matches (3 in 3 files) ----
+drv_motor.c (src\driver) line 122 : void ra_motor_period_update(void)
+drv_motor.h (inc\driver) line 15 : extern void ra_motor_period_update(void);
+INTERRUPT_HANDLER in main.c (src) : 		ra_motor_period_update();

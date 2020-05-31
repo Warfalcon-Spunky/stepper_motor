@@ -29,8 +29,8 @@ INTERRUPT_HANDLER(TIM4_UPD_OVF_IRQHandler, 23)
 	if ((systick_cnt % 10) == 0)
 		systick_flag |= 0x01;
 	
-	/* 4ms interrupt */
-	if ((systick_cnt % 40) == 0)
+	/* 5ms interrupt */
+	if ((systick_cnt % 50) == 0)
 	{
 		ra_motor_period_update();
 		systick_flag |= 0x02;
